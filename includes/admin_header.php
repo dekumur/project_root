@@ -36,7 +36,8 @@ $userRole = htmlspecialchars($_SESSION['user_role'] ?? '');
       <a href="<?= BASE_URL ?>/admin/index.php">Главная</a>
       <a href="<?= BASE_URL ?>/admin/events.php">Мероприятия</a>
       <a href="<?= BASE_URL ?>/admin/users.php">Пользователи</a>
-      <a href="<?= BASE_URL ?>/admin/bid.php">Заявки</a>
+      <a href="<?= BASE_URL ?>/admin/requests.php">Заявки</a>
+      <a href="<?= BASE_URL ?>/admin/materials_add.php">Образование</a>
     </nav>
 
     <div class="admin-user">
