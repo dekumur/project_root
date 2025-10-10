@@ -33,122 +33,80 @@ $news_result = mysqli_query($connect, $news_sql);
   font-style: normal;
 }
 
+/* Общие стили */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
 
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background:rgb(255, 255, 255);
-    color: #222;
-  }
+/* Обертка для контента */
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-  .wrap {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 20px;
-  }
 
-  a {
-    color: #005bbb;
-    text-decoration: none;
-  }
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  text-align: left; /* Выравнивание по левому краю */
+}
+.lead {
+  font-size: 18px;
+  color: #000000ff;
+}
 
-  a:hover {
-    text-decoration: underline;
-  }
+/* Стили для карточек новостей */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 40px;
+}
 
-  .site-header {
-    background: #fff;
-    border-bottom: 1px solid #ddd;
-  }
+.card {
+  width: calc(33.33% - 20px);
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
 
-  .site-header .wrap {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+.card img {
+  width: 100%;
+  height: auto;
+}
 
-  .brand {
-    font-weight: bold;
-    color: #005bbb;
-  }
+.card-body {
+  padding: 20px;
+}
 
-  .main-nav a {
-    margin: 0 10px;
-    color: #333;
-  }
+.card-body h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
 
-  .main-nav a:hover {
-    color: #005bbb;
-  }
+.card-body .meta {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 10px;
+}
 
-  .hero {
-    background: #eef3fa;
-    padding: 30px 20px;
-    margin-bottom: 20px;
-  }
+.card-body p {
+  font-size: 16px;
+  color: #666;
+}
 
-  .hero h1 {
-    margin: 0 0 10px;
-  }
-
-  .cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-
-  .card {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .card img {
-    width: 100%;
-    max-height: 160px;
-    object-fit: cover;
-  }
-
-  .card-body {
-    padding: 15px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .card-body h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-
-  .meta {
-    font-size: 0.9em;
-    color: #777;
-    margin-bottom: 10px;
-  }
-
-  .more {
-    margin-top: auto;
-    font-weight: bold;
-    color: #005bbb;
-  }
-
-  .site-footer {
-    background: #fff;
-    border-top: 1px solid #ddd;
-    padding: 15px;
-    text-align: center;
-    margin-top: 30px;
-  }
-
-  @media (max-width: 768px) {
-    .cards {
-      grid-template-columns: 1fr;
-    }
-  }
+/* Стили для текста "Пока нет опубликованных новостей" */
+.no-news {
+  text-align: center;
+  font-size: 18px;
+  color: #999;
+  margin-top: 40px;
+}
 </style>
 
 <section class="wrap hero">

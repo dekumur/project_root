@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/main.css">
+<link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/forms.css">
 
 <div class="auth-wrap">
     <div class="auth-card">
