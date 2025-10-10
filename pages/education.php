@@ -125,7 +125,7 @@ body {
 
 /* Иллюстрация */
 .illustration {
-  margin-top: 50px;
+  margin-top: -250px;
   text-align: right;
 }
 

@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/../includes/config.php';
-require_once __DIR__ . '/../includes/db_connect.php'; // создаёт $connect
+require_once __DIR__ . '/../includes/db_connect.php';
 
 // Проверка авторизации
 if (empty($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
@@ -15,10 +15,15 @@ $success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = trim($_POST['title'] ?? '');
+    $description = trim($_POST['description'] ?? '');
+    $type = $_POST['type'] ?? '';
+    $audience = $_POST['audience'] ?? '';
 
-    if ($title === '') {
-        $errors[] = "Введите название материала.";
-    }
+    // Валидация полей
+    if ($title === '') $errors[] = "Введите название материала.";
+    if ($description === '') $errors[] = "Введите описание материала.";
+    if (!in_array($type, ['article', 'video'])) $errors[] = "Выберите корректный тип материала.";
+    if (!in_array($audience, ['kids', 'teens', 'adults', 'seniors'])) $errors[] = "Выберите целевую аудиторию.";
 
     if (!isset($_FILES['file']) || $_FILES['file']['error'] !== UPLOAD_ERR_OK) {
         $errors[] = "Выберите файл для загрузки.";
@@ -41,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'application/pdf',
             'application/vnd.ms-powerpoint',
             'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // DOCX
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
             'video/mp4',
             'video/webm',
             'video/ogg'
@@ -57,14 +62,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $author_id = (int)$_SESSION['user_id'];
                 $created_at = date('Y-m-d H:i:s');
 
+                // Защита от SQL-инъекций
                 $title_safe = mysqli_real_escape_string($connect, $title);
+                $desc_safe = mysqli_real_escape_string($connect, $description);
                 $file_safe = mysqli_real_escape_string($connect, $filePathForDB);
+                $type_safe = mysqli_real_escape_string($connect, $type);
+                $audience_safe = mysqli_real_escape_string($connect, $audience);
 
-                $sql = "INSERT INTO materials (title, file_path, author_id, created_at) 
-                        VALUES ('$title_safe', '$file_safe', '$author_id', '$created_at')";
+                $sql = "
+                    INSERT INTO materials (title, description, file_path, type, audience, author_id, created_at)
+                    VALUES ('$title_safe', '$desc_safe', '$file_safe', '$type_safe', '$audience_safe', '$author_id', '$created_at')
+                ";
 
                 if (mysqli_query($connect, $sql)) {
                     $success = "Материал успешно добавлен!";
+                    $_POST = []; // очистим форму
                 } else {
                     $errors[] = "Ошибка при добавлении в базу: " . mysqli_error($connect);
                 }
@@ -102,7 +114,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="form-group">
-            <label for="file">Выберите файл (PDF, PPT, PPTX, DOCX, MP4, WEBM, OGG)</label>
+            <label for="description">Описание</label>
+            <textarea name="description" id="description" rows="4" required><?= htmlspecialchars($_POST['description'] ?? '') ?></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="type">Тип материала</label>
+            <select name="type" id="type" required>
+                <option value="">-- Выберите тип --</option>
+                <option value="article" <?= (($_POST['type'] ?? '') === 'article') ? 'selected' : '' ?>>Статья / документ</option>
+                <option value="video" <?= (($_POST['type'] ?? '') === 'video') ? 'selected' : '' ?>>Видео</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="audience">Целевая аудитория</label>
+            <select name="audience" id="audience" required>
+                <option value="">-- Выберите аудиторию --</option>
+                <option value="kids" <?= (($_POST['audience'] ?? '') === 'kids') ? 'selected' : '' ?>>Дети (6–12 лет)</option>
+                <option value="teens" <?= (($_POST['audience'] ?? '') === 'teens') ? 'selected' : '' ?>>Подростки</option>
+                <option value="adults" <?= (($_POST['audience'] ?? '') === 'adults') ? 'selected' : '' ?>>Взрослые</option>
+                <option value="seniors" <?= (($_POST['audience'] ?? '') === 'seniors') ? 'selected' : '' ?>>Пенсионеры</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="file">Файл (PDF, PPT, DOCX, MP4, WEBM, OGG)</label>
             <input type="file" name="file" id="file" accept=".pdf,.ppt,.pptx,.docx,.mp4,.webm,.ogg" required>
         </div>
 

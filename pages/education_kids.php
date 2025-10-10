@@ -2,12 +2,20 @@
 include __DIR__ . '/../includes/db_connect.php';
 include __DIR__ . '/../includes/header.php';
 
+// SQL-запросы к таблице materials с учетом поля audience
+$articles_sql = "SELECT * FROM materials WHERE audience='kids' AND type='article' ORDER BY created_at DESC LIMIT 5";
+$videos_sql   = "SELECT * FROM materials WHERE audience='kids' AND type='video' ORDER BY created_at DESC LIMIT 5";
 
-$articles_sql = "SELECT * FROM education_materials WHERE age_group='kids' AND type='article' ORDER BY created_at DESC LIMIT 5";
-$videos_sql   = "SELECT * FROM education_materials WHERE age_group='kids' AND type='video' ORDER BY created_at DESC LIMIT 5";
-
+// Выполнение запросов с проверкой
 $articles = mysqli_query($connect, $articles_sql);
-$videos   = mysqli_query($connect, $videos_sql);
+if (!$articles) {
+    die("Ошибка SQL (articles): " . mysqli_error($connect));
+}
+
+$videos = mysqli_query($connect, $videos_sql);
+if (!$videos) {
+    die("Ошибка SQL (videos): " . mysqli_error($connect));
+}
 ?>
 
 <style>
@@ -48,12 +56,6 @@ $videos   = mysqli_query($connect, $videos_sql);
   text-align: left;
 }
 
-.article img {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
 .article h3, .video h3 {
   margin: 5px 0;
   color: #333;
@@ -65,9 +67,8 @@ $videos   = mysqli_query($connect, $videos_sql);
   line-height: 1.5;
 }
 
-.video iframe {
+.video video {
   width: 100%;
-  height: 220px;
   border-radius: 10px;
 }
 
@@ -99,24 +100,17 @@ $videos   = mysqli_query($connect, $videos_sql);
     <!-- Слева — Статьи -->
     <div class="block">
       <h2>Статьи</h2>
-      <?php if (mysqli_num_rows($articles) > 0): 
-        $articles = mysqli_query($connect, $articles_sql);
-
-if (!$articles) {
-  die("Ошибка SQL (articles): " . mysqli_error($connect));
-}
-?>
-        
+      <?php if (mysqli_num_rows($articles) > 0): ?>
         <?php while ($row = mysqli_fetch_assoc($articles)): ?>
           <div class="article">
-            <?php if (!empty($row['image'])): ?>
-              <img src="<?= htmlspecialchars($row['image']) ?>" alt="">
-            <?php endif; ?>
             <h3><?= htmlspecialchars($row['title']) ?></h3>
-            <p><?= nl2br(htmlspecialchars(mb_substr(strip_tags($row['content']), 0, 180))) ?>...</p>
+            <p><?= nl2br(htmlspecialchars(mb_substr(strip_tags($row['description']), 0, 180))) ?>...</p>
+            <?php if (!empty($row['file_path'])): ?>
+              <a href="<?= htmlspecialchars($row['file_path']) ?>">Скачать материал</a>
+            <?php endif; ?>
           </div>
         <?php endwhile; ?>
-        <a href="education_articles.php?group=kids" class="more-link">Смотреть все статьи →</a>
+        <a href="education_articles.php?audience=kids" class="more-link">Смотреть все статьи →</a>
       <?php else: ?>
         <p>Пока нет статей для этой возрастной группы.</p>
       <?php endif; ?>
@@ -128,13 +122,16 @@ if (!$articles) {
       <?php if (mysqli_num_rows($videos) > 0): ?>
         <?php while ($row = mysqli_fetch_assoc($videos)): ?>
           <div class="video">
-            <?php if (!empty($row['video_url'])): ?>
-              <iframe src="<?= htmlspecialchars($row['video_url']) ?>" frameborder="0" allowfullscreen></iframe>
+            <?php if (!empty($row['file_path'])): ?>
+              <video controls>
+                <source src="<?= htmlspecialchars($row['file_path']) ?>" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+              </video>
             <?php endif; ?>
             <h3><?= htmlspecialchars($row['title']) ?></h3>
           </div>
         <?php endwhile; ?>
-        <a href="education_videos.php?group=kids" class="more-link">Смотреть все видео →</a>
+        <a href="education_videos.php?audience=kids" class="more-link">Смотреть все видео →</a>
       <?php else: ?>
         <p>Пока нет видео для этой возрастной группы.</p>
       <?php endif; ?>
