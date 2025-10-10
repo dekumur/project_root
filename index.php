@@ -2,6 +2,7 @@
 include 'includes/db_connect.php';
 include 'includes/header.php';
 
+
 function e($s) { return htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); }
 function excerpt($text, $len = 220) {
     $text = strip_tags($text);
@@ -36,9 +37,6 @@ $events_result = mysqli_query($connect, $events_sql);
     </div>
   </div>
 </main>
-
-
-
 <div class="main-container">
   <div class="image-container">
     <img src="./assets/img/image 2.png" alt="Дед" />
