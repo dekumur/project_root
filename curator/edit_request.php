@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                        WHERE id=$request_id AND user_id=$user_id";
 
         if (mysqli_query($connect, $sql_update)) {
-            $success = "Заявка успешно обновлена!";
+            $success = "Заявка успешно обновлена:)!";
             $request['title'] = $title;
             $request['description'] = $description;
         } else {
