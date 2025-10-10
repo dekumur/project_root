@@ -1,5 +1,6 @@
 <?php
 include __DIR__ . '/../includes/db_connect.php';
+$page_title = 'Для пенсионеров';
 include __DIR__ . '/../includes/header.php';
 
 $articles_sql = "SELECT * FROM materials WHERE audience='seniors' AND type='article' ORDER BY created_at DESC LIMIT 5";

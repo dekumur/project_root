@@ -1,5 +1,6 @@
 <?php
 include __DIR__ . '/../includes/db_connect.php';
+$page_title = 'Для детей';
 include __DIR__ . '/../includes/header.php';
 
 // SQL-запросы к таблице materials с учетом поля audience
@@ -110,7 +111,7 @@ if (!$videos) {
             <?php endif; ?>
           </div>
         <?php endwhile; ?>
-        <a href="education_articles.php?audience=kids" class="more-link">Смотреть все статьи →</a>
+        <a href="all_article.php?audience=kids" class="more-link">Смотреть все статьи →</a>
       <?php else: ?>
         <p>Пока нет статей для этой возрастной группы.</p>
       <?php endif; ?>

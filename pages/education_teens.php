@@ -1,5 +1,6 @@
 <?php
 include __DIR__ . '/../includes/db_connect.php';
+$page_title = 'Для подростков';
 include __DIR__ . '/../includes/header.php';
 
 // SQL-запросы к таблице materials

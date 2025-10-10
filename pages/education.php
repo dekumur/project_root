@@ -1,8 +1,9 @@
 <?php
 include __DIR__ . '/../includes/db_connect.php';
+$page_title = 'Образовательный ресурс';
 include __DIR__ . '/../includes/header.php';
-?>
 
+?>
 <style>
 
 

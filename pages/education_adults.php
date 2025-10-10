@@ -1,6 +1,8 @@
 <?php
 include __DIR__ . '/../includes/db_connect.php';
+$page_title = 'Для взрослых';
 include __DIR__ . '/../includes/header.php';
+
 
 $articles_sql = "SELECT * FROM materials WHERE audience='adults' AND type='article' ORDER BY created_at DESC LIMIT 5";
 $videos_sql   = "SELECT * FROM materials WHERE audience='adults' AND type='video' ORDER BY created_at DESC LIMIT 5";
