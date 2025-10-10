@@ -1,0 +1,318 @@
+/* === Общие стили === */
+body {
+    font-family: 'Inter', 'Arial', sans-serif;
+    margin: 0;
+    background: #f7f9fc;
+    color: #222;
+    line-height: 1.6;
+}
+
+.wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+a {
+    color: #005bbb;
+    text-decoration: none;
+    transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+a:hover {
+    color: #003f8c;
+    text-decoration: underline;
+}
+
+/* === Шапка сайта === */
+.site-header {
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.site-header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+}
+
+.brand {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #005bbb;
+}
+
+.main-nav a {
+    margin: 0 12px;
+    color: #333;
+    font-weight: 500;
+}
+.main-nav a:hover {
+    color: #005bbb;
+}
+
+/* === Блок hero === */
+.hero {
+    background: #eaf2fd;
+    padding: 40px 25px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+}
+.hero h1 {
+    margin: 0 0 10px;
+    color: #003f8c;
+}
+
+/* === Сетка === */
+.grid-two {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+@media (max-width: 768px) {
+    .grid-two {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* === Карточки === */
+.card {
+    background: #fff;
+    border: 1px solid #e1e5eb;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 20px;
+}
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+.card img {
+    width: 100%;
+    max-height: 160px;
+    object-fit: cover;
+}
+.card-body {
+    padding: 15px 20px;
+}
+
+/* === Таблица календаря (компактная, но с переносом строк) === */
+.calendar-table {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: #fff;
+    border: 1px solid #e1e5eb;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+    font-size: 0.9rem;
+    table-layout: auto; /* теперь ширина подстраивается под контент */
+}
+
+.calendar-table th,
+.calendar-table td {
+    border: 1px solid #e5e8ec;
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+    white-space: normal; /* разрешаем перенос строк */
+    word-wrap: break-word; /* перенос длинных слов */
+    line-height: 1.4;
+}
+
+.calendar-table th {
+    background-color: #f3f6fb;
+    color: #003f8c;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.calendar-table td {
+    color: #333;
+}
+
+/* Зебра-эффект */
+.calendar-table tr:nth-child(even) {
+    background-color: #fafbfc;
+}
+
+/* Эффект при наведении */
+.calendar-table tr:hover {
+    background-color: #eef4ff;
+    transition: background 0.15s ease;
+}
+
+/* Ссылки в таблице */
+.calendar-table a {
+    color: #005bbb;
+    font-weight: 500;
+    text-decoration: none;
+}
+.calendar-table a:hover {
+    text-decoration: underline;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .calendar-table {
+        font-size: 0.85rem;
+    }
+    .calendar-table th,
+    .calendar-table td {
+        padding: 6px 8px;
+    }
+}
+
+
+
+/* === Подвал === */
+.site-footer {
+    background: #fff;
+    border-top: 1px solid #e0e0e0;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #555;
+    margin-top: 40px;
+}
+
+/* forms.css */
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f9fb;
+    color: #222;
+    margin: 0;
+    padding: 0;
+}
+
+.auth-wrap {
+    max-width: 420px;
+    margin: 60px auto;
+    padding: 20px;
+}
+
+.auth-card {
+    background: #fff;
+    border: 1px solid #e2e6ea;
+    border-radius: 10px;
+    padding: 22px;
+    box-shadow: 0 4px 18px rgba(15, 30, 50, 0.04);
+}
+
+.auth-card h2 {
+    margin: 0 0 14px;
+    color: #003f8c;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.92rem;
+    color: #333;
+}
+
+label input {
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 6px;
+    border: 1px solid #d6dbe0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+}
+
+.form-actions {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.btn {
+    background: #005bbb;
+    color: #fff;
+    border: none;
+    padding: 9px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn:hover { opacity: 0.95; }
+
+.link {
+    color: #005bbb;
+    text-decoration: none;
+    font-size: 0.92rem;
+}
+.link:hover { text-decoration: underline; }
+
+.form-errors {
+    background: #fff4f4;
+    border: 1px solid #ffd6d6;
+    color: #8a1f1f;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    font-size: 0.92rem;
+}
+
+.form-errors ul { margin: 0; padding-left: 18px; }
+
+/* --- Кнопки авторизации в шапке --- */
+.auth-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-login,
+.btn-register {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.btn-login {
+  color: #005bbb;
+  border: 1px solid #005bbb;
+  background: transparent;
+}
+
+.btn-login:hover {
+  background: #005bbb;
+  color: #fff;
+}
+
+.btn-register {
+  color: #fff;
+  background: #005bbb;
+  border: 1px solid #005bbb;
+}
+
+.btn-register:hover {
+  opacity: 0.9;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .auth-links {
+    flex-direction: column;
+    margin-top: 10px;
+  }
+}
+
+footer {
+    z-index: 100;
+    position: relative;
+}
