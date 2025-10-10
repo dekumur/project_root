@@ -26,52 +26,128 @@ $events_sql = "SELECT id, title, description, event_date, event_time, location
                LIMIT 3";
 $events_result = mysqli_query($connect, $events_sql);
 ?>
-<section class="hero wrap">
-  <h1>Центр финансового просвещения Удмуртской Республики</h1>
-  <p class="lead">Актуальная информация, обучение и материалы для повышения финансовой грамотности жителей Удмуртии.</p>
-</section>
-
-<section class="wrap grid-two">
-  <div class="col">
-    <h2>Последние новости</h2>
-    <?php if (mysqli_num_rows($news_result) > 0): ?>
-      <div class="cards">
-        <?php while ($n = mysqli_fetch_assoc($news_result)): ?>
-          <article class="card news-card">
-            <?php if (!empty($n['image'])): ?>
-              <div class="thumb"><img src="<?= e($n['image']) ?>" alt="<?= e($n['title']) ?>"></div>
-            <?php endif; ?>
-            <div class="card-body">
-              <h3><a href="/pages/news_detail.php?id=<?= (int)$n['id'] ?>"><?= e($n['title']) ?></a></h3>
-              <p class="meta">Опубликовано <?= date('d.m.Y', strtotime($n['created_at'])) ?> <?= $n['author'] ? '• ' . e($n['author']) : '' ?></p>
-              <p><?= e(excerpt($n['content'], 240)) ?></p>
-              <a href="/pages/news_detail.php?id=<?= (int)$n['id'] ?>" class="more">Читать далее →</a>
-            </div>
-          </article>
-        <?php endwhile; ?>
-      </div>
-    <?php else: ?>
-      <p>Пока нет новостей.</p>
-    <?php endif; ?>
+<main class="site-main">
+  <div class="wrap grid-two">
+    <div class="info-text">
+      <strong>Центр</strong> — современная образовательная площадка, созданная для повышения финансовой грамотности и формирования устойчивых экономических знаний у жителей региона. Наша миссия — помочь каждому обрести уверенность в управлении личными финансами, планировать бюджет, разбираться в инвестициях и банковских продуктах, а также понимать финансовое законодательство.
+    </div>
+    <div class="info-image2">
+      <img src="./assets/img/image 11.svg" alt="Центр финансового просвещения">
+    </div>
   </div>
+</main>
 
-  <aside class="col">
-    <h2>Ближайшие мероприятия</h2>
-    <?php if (mysqli_num_rows($events_result) > 0): ?>
-      <ul class="events-list">
-        <?php while ($e = mysqli_fetch_assoc($events_result)): ?>
-          <li>
-            <strong><?= e($e['title']) ?></strong><br>
-            <span class="meta"><?= date('d.m.Y', strtotime($e['event_date'])) ?> <?= $e['event_time'] ? '• ' . substr($e['event_time'], 0, 5) : '' ?></span><br>
-            <span class="muted"><?= e($e['location']) ?></span>
-            <p><?= e(excerpt($e['description'], 140)) ?></p>
-          </li>
-        <?php endwhile; ?>
-      </ul>
-    <?php else: ?>
-      <p>Нет запланированных мероприятий.</p>
-    <?php endif; ?>
-  </aside>
+
+
+<div class="main-container">
+  <div class="image-container">
+    <img src="./assets/img/image 2.png" alt="Дед" />
+  </div>
+ <div class="che">Наши цели</div>
+  <div class="blocks-wrapper">
+    <div class="left-column">
+      <div class="white-turquoise-block">
+        <h3>Повышение <br>финансовой <br>грамотности населения</h3>
+      </div>
+      <div class="white-turquoise-block2">
+        <h3>Консультирование<br> граждан</h3>
+      </div>
+    </div>
+
+    <div class="right-column">
+      <div class="white-turquoise-block2">
+        <h3>Обучающие <br>материалы и<br> семинары</h3>
+      </div>
+      <div class="white-turquoise-block">
+        <h3>Поддержка<br>через онлайн<br>консультации</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="info-slider">
+  <h2 class="slider-title">Мы организуем</h2>
+  <div class="slider-container">
+    <div class="slide active">
+      <h3>Лекции</h3>
+      <p>Мы организуем лекции с участием экспертов в области экономики, бухгалтерии и права.</p>
+    </div>
+    <div class="slide">
+      <h3>Тренинги</h3>
+      <p>Практикоориентированные тренинги для повышения финансовой грамотности.</p>
+    </div>
+    <div class="slide">
+      <h3>Мастер-классы и консультации</h3>
+      <p>Мастер-классы и консультации с профессионалами для глубокого понимания и решения задач.</p>
+    </div>
+  </div>
+  <div class="slider-controls">
+    <button class="prev" aria-label="Предыдущий слайд">&#10094;</button>
+    <button class="next" aria-label="Следующий слайд">&#10095;</button>
+  </div>
 </section>
 
-<?php include 'includes/footer.php'; ?>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const prevBtn = document.querySelector('.prev');
+  const nextBtn = document.querySelector('.next');
+  let current = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+  }
+
+  prevBtn.addEventListener('click', () => {
+    current = (current === 0) ? slides.length - 1 : current - 1;
+    showSlide(current);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  });
+</script>
+ <div class="cheza">Вопрос-Ответ</div>
+<div class="container">
+        <div class="question-answer">
+            <div class="question">Что такое финансовая грамотность и почему она важна?</div>
+            <div class="answer">Финансовая грамотность — это умение эффективно управлять своими финансами...</div>
+        </div>
+        <div class="question-answer">
+            <div class="question">Какие услуги предоставляет центр финансового просвещения?</div>
+            <div class="answer">Центр предоставляет образовательные курсы, консультации по финансовому планированию, помощь в составлении бюджета, а также семинары по вопросам инвестиций и сбережений..</div>
+        </div>
+        <div class="question-answer">
+            <div class="question">Кому будет полезно обращаться в центр?</div>
+            <div class="answer">Обращаться могут все желающие улучшить свои финансовые знания — студенты, молодые специалисты, семейные люди и пенсионеры..</div>
+        </div>
+        <div class="question-answer">
+            <div class="question">Нужно ли иметь какой-то опыт для участия в курсах?</div>
+            <div class="answer">Для участия в большинстве курсов не требуется предварительного опыта...</div>
+        </div>
+        <div class="question-answer">
+            <div class="question">Как записаться на обучение?</div>
+            <div class="answer"> Записаться можно через сайт центра, позвонив по телефону или посетив офис лично.</div>
+        </div>
+    </div>
+  <?php include BASE_PATH . '/includes/footer.php'; ?>
+
+
+      <script>
+        document.querySelectorAll('.question').forEach(question => {
+    question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        
+        if (!question.classList.contains('active')) {
+            document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+            document.querySelectorAll('.answer').forEach(a => a.style.maxHeight = '0');
+        }
+        
+        question.classList.toggle('active');
+        answer.style.maxHeight = !question.classList.contains('active') ? '0' : `${answer.scrollHeight}px`;
+    });
+});
+      </script>

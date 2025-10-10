@@ -44,6 +44,7 @@ if ($res) {
                 <h3>Быстрые действия</h3>
                 <ul>
                     <li><a href="<?= BASE_URL ?>/admin/events.php?action=add">Добавить мероприятие</a></li>
+                    <li><a href="<?= BASE_URL ?>/admin/add_news.php?action=add">Добавить новость</a></li>
                     <li><a href="<?= BASE_URL ?>/pages/logout.php">Выйти</a></li>
                 </ul>
             </div>
