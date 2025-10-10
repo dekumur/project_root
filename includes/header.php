@@ -29,7 +29,7 @@ if (!defined('BASE_URL')) {
             <a href="<?= BASE_URL ?>/index.php">Главная</a>
             <a href="<?= BASE_URL ?>/pages/calendar.php">Календарь</a>
             <a href="<?= BASE_URL ?>/pages/news.php">Новости</a>
-            <a href="<?= BASE_URL ?>/pages/materials.php">Образование</a>
+            <a href="<?= BASE_URL ?>/pages/education.php">Образование</a>
         </nav>
         <div class="auth-links">
             <a href="<?= BASE_URL ?>/pages/logout.php" class="btn-logout">Выйти</a>
@@ -41,7 +41,7 @@ if (!defined('BASE_URL')) {
             <a href="<?= BASE_URL ?>/index.php">Главная</a>
             <a href="<?= BASE_URL ?>/pages/calendar.php">Календарь</a>
             <a href="<?= BASE_URL ?>/pages/news.php">Новости</a>
-            <a href="<?= BASE_URL ?>/pages/materials.php">Образование</a>
+            <a href="<?= BASE_URL ?>/pages/education.php">Образование</a>
         </nav>
         <div class="auth-links">
             <a href="<?= BASE_URL ?>/pages/login.php" class="btn-login">Войти</a>
