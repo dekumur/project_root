@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             header('Location: ' . BASE_URL . '/admin/index.php');
                             break;
                         case 'curator':
-                            header('Location: ' . BASE_URL . '/curator/index.php');
+                            header('Location: ' . BASE_URL . '/curator/curator_request.php');
                             break;
                         case 'user':
                         default:
