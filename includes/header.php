@@ -154,29 +154,22 @@ if (!defined('BASE_URL')) {
             
             <a href="<?= BASE_URL ?>/pages/calendar.php">Календарь</a>
             <a href="<?= BASE_URL ?>/pages/news.php">Новости</a>
-<<<<<<< HEAD
-            <a href="<?= BASE_URL ?>/pages/materials.php">Образование</a>
-=======
             <a href="<?= BASE_URL ?>/pages/education.php">Образование</a>
         </nav>
         <div class="auth-links">
->>>>>>> 9b56cbb042f9f92d15cb7638df0931e50dc2f5a8
             <a href="<?= BASE_URL ?>/pages/logout.php" class="btn-logout">Выйти</a>
         </div>
 
     <?php else: ?>
         <!-- Навигация для гостей -->
         <nav class="main-nav">
-            
             <a href="<?= BASE_URL ?>/pages/calendar.php">Календарь</a>
             <a href="<?= BASE_URL ?>/pages/news.php">Новости</a>
-<<<<<<< HEAD
             <a href="<?= BASE_URL ?>/pages/materials.php">Образование</a>
-=======
             <a href="<?= BASE_URL ?>/pages/education.php">Образование</a>
         </nav>
         <div class="auth-links">
->>>>>>> 9b56cbb042f9f92d15cb7638df0931e50dc2f5a8
+
             <a href="<?= BASE_URL ?>/pages/login.php" class="btn-login">Войти</a>
             <a href="<?= BASE_URL ?>/pages/register.php" class="btn-register">Регистрация</a>
         </div>
