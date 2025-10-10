@@ -27,6 +27,84 @@ $events_sql = "SELECT id, title, description, event_date, event_time, location
                LIMIT 3";
 $events_result = mysqli_query($connect, $events_sql);
 ?>
+<style>
+  .container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+.info-image2 img {
+  width: 500px; /* подгоняет ширину под блок */
+  height: auto;
+  display: block;
+  margin-left: 5%;
+  margin-top: -10%;
+  
+}
+
+.white-turquoise-block {
+    height: 50px;
+    width: 150px;
+  background: linear-gradient(135deg, #fff 30%, #D2FEFF 100%);
+  border-radius: 39px;
+  padding: 28px 36px;
+  color: #D2FEFF;
+  max-width: 300px;
+  margin: 50px auto;
+  font-size: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 2.5px solid #D2FEFF;
+}
+.white-turquoise-block h3 {
+  margin-top: -10%;
+  margin-bottom: 14px;
+  font-size: 1rem;
+  color: #000000;
+  font-weight: 200;
+  text-align: left;      /* Выравнивание по левому краю */
+  letter-spacing: 0.15em; /* Можно оставить расстояние между буквами */
+ line-height: 1.4; /* увеличенный межстрочный интервал */
+}
+.white-turquoise-block2 {
+height: 50px;
+width: 150px;
+  background: linear-gradient(135deg, #fff 30%, #DEC0EE 100%);
+  border-radius: 39px;
+  padding: 28px 36px;
+  color: #000000;
+  max-width: 300px;
+  margin: 50px auto;
+  font-size: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 2.5px solid #DEC0EE;
+}
+.white-turquoise-block2 h3 {
+  margin-top: -10%;
+  margin-bottom: 14px;
+  font-size: 1rem;
+  color: #000000;
+  font-weight: 200;
+  text-align: left;      /* Выравнивание по левому краю */
+  letter-spacing: 0.15em; /* Можно оставить расстояние между буквами */
+ line-height: 1.4; /* увеличенный межстрочный интервал */
+}
+
+.blocks-wrapper {
+      margin-top:200px; /* или любое другое нужное значение */
+  display: flex;
+  justify-content: flex-start; /* выравнивание колонок слева внутри контейнера */
+  gap: 30px; /* расстояние между колонками */
+  max-width: 650px;
+  margin-left: auto; /* сдвигает блоки вправо */
+  margin-right: 10px; /* дополнительный отступ от правого края, подкорректируйте под нужный сдвиг */
+}
+  </style>
+<div class="container">  
 <main class="site-main">
   <div class="wrap grid-two">
     <div class="info-text">
@@ -149,3 +227,5 @@ $events_result = mysqli_query($connect, $events_sql);
     });
 });
       </script>
+
+</div> 
