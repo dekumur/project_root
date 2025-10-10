@@ -1,207 +1,48 @@
-/* === Общие стили === */
-body {
-    font-family: 'Inter', 'Arial', sans-serif;
-    margin: 0;
-    background: #f7f9fc;
-    color: #222;
-    line-height: 1.6;
-}
-
-.wrap {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px 20px;
-}
-
-a {
-    color: #005bbb;
-    text-decoration: none;
-    transition: color 0.2s ease, text-decoration 0.2s ease;
-}
-a:hover {
-    color: #003f8c;
-    text-decoration: underline;
-}
-
-
-/* === Сетка === */
-.grid-two {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 30px;
-}
-@media (max-width: 768px) {
-    .grid-two {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* === Карточки === */
-.card {
-    background: #fff;
-    border: 1px solid #e1e5eb;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    margin-bottom: 20px;
-}
-.card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-.card img {
-    width: 100%;
-    max-height: 160px;
-    object-fit: cover;
-}
-.card-body {
-    padding: 15px 20px;
-}
-
-/* === Таблица календаря (компактная, но с переносом строк) === */
-.calendar-table {
-    width: 100%;
-    max-width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    background: #fff;
-    border: 1px solid #e1e5eb;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
-    font-size: 0.9rem;
-    table-layout: auto; /* теперь ширина подстраивается под контент */
-}
-
-.calendar-table th,
-.calendar-table td {
-    border: 1px solid #e5e8ec;
-    padding: 8px 10px;
-    text-align: left;
-    vertical-align: top;
-    white-space: normal; /* разрешаем перенос строк */
-    word-wrap: break-word; /* перенос длинных слов */
-    line-height: 1.4;
-}
-
-.calendar-table th {
-    background-color: #f3f6fb;
-    color: #003f8c;
-    font-weight: 600;
-    font-size: 0.95rem;
-}
-
-.calendar-table td {
-    color: #333;
-}
-
-/* Зебра-эффект */
-.calendar-table tr:nth-child(even) {
-    background-color: #fafbfc;
-}
-
-/* Эффект при наведении */
-.calendar-table tr:hover {
-    background-color: #eef4ff;
-    transition: background 0.15s ease;
-}
-
-/* Ссылки в таблице */
-.calendar-table a {
-    color: #005bbb;
-    font-weight: 500;
-    text-decoration: none;
-}
-.calendar-table a:hover {
-    text-decoration: underline;
-}
-
-/* Адаптивность */
-@media (max-width: 768px) {
-    .calendar-table {
-        font-size: 0.85rem;
-    }
-    .calendar-table th,
-    .calendar-table td {
-        padding: 6px 8px;
-    }
-}
-
-
-
-/* === Подвал === */
-.site-footer {
-    background: #fff;
-    border-top: 1px solid #e0e0e0;
-    padding: 20px;
-    text-align: center;
-    font-size: 0.95rem;
-    color: #555;
-    margin-top: 40px;
-}
-
-
-/* --- Кнопки авторизации в шапке --- */
-.auth-links {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.btn-login,
-.btn-register {
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: 0.2s ease;
-
-}
-
-
-
-
-
-.btn-register:hover {
-  opacity: 0.9;
-}
-
-/* Адаптивность */
-@media (max-width: 768px) {
-  .auth-links {
-    flex-direction: column;
-    margin-top: 10px;
-  }
-}
-
-footer {
-    z-index: 100;
-    position: relative;
-}
-
+/* === Базовые стили === */
 @font-face {
-  font-family: "YanoneKaffeesatz"; /* имя должно соответствовать используемому */
+  font-family: "YanoneKaffeesatz";
   src: url("../fonts/YanoneKaffeesatz.ttf") format("truetype");
   font-style: normal;
   font-weight: normal;
 }
+
 body {
-  background-color: #ffffff !important;
+  font-family: 'YanoneKaffeesatz', sans-serif;
   margin: 0;
   padding: 0;
-  /* рекомендуется задать шрифт и цвета текста тоже, если нужно */
-  color: #222; /* так текст будет хорошо виден на белом фоне */
-  font-family: 'YanoneKaffeesatz', sans-serif;
-  overflow-x: hidden; /* предотвращает горизонтальную прокрутку */
+  background-color: #fff;
+  color: #222;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
+
+a {
+  color: #005bbb;
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+a:hover {
+  color: #003f8c;
+  text-decoration: underline;
+}
+
 .wrap {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 20px;
-  background-color: #ffffff;
+  padding: 30px 20px;
 }
 
+/* === Шапка === */
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+.site-header .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
 
 .brand {
   display: flex;
@@ -209,360 +50,172 @@ body {
   font-weight: 700;
   font-size: 18px;
   color: #168C74;
-  white-space: nowrap;
-  margin-right: 30px;
+  text-transform: uppercase;
+}
+.brand img {
+  width: 50px;
+  margin-right: 10px;
 }
 
+.main-nav a {
+  text-decoration: none;
+  color: #333;
+  border: 1px solid #333;
+  border-radius: 20px;
+  padding: 6px 14px;
+  margin-left: 10px;
+  transition: 0.3s;
+}
+.main-nav a:hover {
+  background: #333;
+  color: #fff;
+}
+.main-nav a.active {
+  background: #009688;
+  color: #fff;
+  border-color: #009688;
+}
 
-
-/* Основной контент - двухколоночный блок */
+/* === Контент === */
 .site-main {
   padding: 40px 0 60px;
 }
 
 .grid-two {
   display: grid;
-  grid-template-columns: 2.7fr 1.3fr;
-  gap: 10px;
-  align-items: center;
+  grid-template-columns: 2.5fr 1.5fr;
+  gap: 30px;
+}
+@media (max-width: 768px) {
+  .grid-two {
+    grid-template-columns: 1fr;
+  }
 }
 
 .info-text {
-  font-size: 23px;
-  line-height: 1.45;
-  color: #222;
+  font-size: 22px;
   max-width: 520px;
+  color: #222;
 }
-
-.info-text b, .info-text strong {
+.info-text strong {
   font-weight: 700;
 }
 
-
-
-.info-image2 {
-  max-width: 100%;
-  margin-left: auto;
+/* === Карточки === */
+.card {
+  background: #fff;
+  border: 1px solid #e1e5eb;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+.card img {
+  width: 100%;
+  max-height: 160px;
+  object-fit: cover;
+}
+.card-body {
+  padding: 15px 20px;
 }
 
-
-
-.slider-title {
-  margin-top: 100px;
-  text-align: center;
-  color: #333;
-  font-family: 'YanoneKaffeesatz', sans-serif;
-  font-size: 2.4rem;
-  margin-bottom: 25px;
-  font-weight: 400; /* нормальный вес */
+/* === Таблица календаря === */
+.calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background: #fff;
+  border: 1px solid #e1e5eb;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+  font-size: 0.9rem;
 }
-  /* Остальные стили остаются без изменений */
-  .info-slider {
-    max-width: 700px;
-    margin: 40px auto;
-    font-family: 'YanoneKaffeesatz', sans-serif;
-    position: relative;
-  }
-  .slider-container {
-    display: flex;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(22, 140, 116, 0.3);
-  }
-  .slide {
-    min-width: 100%;
-    padding: 30px 40px;
-    box-sizing: border-box;
-    background: linear-gradient(135deg, #DEC0EE 0%, #278183ff 100%);
-    color: #fff;
-    transition: transform 0.5s ease;
-    display: none;
-    flex-shrink: 0;
-  }
-  .slide.active {
-    display: block;
-  }
-  .slide h3 {
-    font-size: 1.9rem;
-    margin-bottom: 15px;
-    text-shadow: 1.5px 1.5px 2px #0f5a48;
-  }
-  .slide p {
-    font-size: 20px;
-    line-height: 1.6;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.25);
-  }
-  .slider-controls {
-    text-align: center;
-    margin-top: 12px;
-  }
-  .slider-controls button {
-    background-color: #746299ff;
-    border: none;
-    color: white;
-    font-size: 1.8rem;
-    margin: 0 12px;
-    padding: 8px 18px;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.3s ease;
-  }
-  .slider-controls button:hover {
-    background-color: #0e664d;
-  }
-  @media (max-width: 600px) {
-    .slide h3 {
-      font-size: 1.5rem;
-    }
-    .slide p {
-      font-size: 1rem;
-    }
-  }
-.left-column,
-.right-column {
+
+.calendar-table th,
+.calendar-table td {
+  border: 1px solid #e5e8ec;
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+  word-wrap: break-word;
+}
+
+.calendar-table th {
+  background: #f3f6fb;
+  color: #003f8c;
+  font-weight: 600;
+}
+.calendar-table tr:nth-child(even) {
+  background: #fafbfc;
+}
+.calendar-table tr:hover {
+  background: #eef4ff;
+  transition: background 0.15s ease;
+}
+
+/* === Блоки для возрастных групп === */
+.groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px 30px;
+  margin-top: 40px;
+}
+
+.group-btn {
   display: flex;
   flex-direction: column;
-  gap: -20px; /* уменьшенное расстояние между блоками */
-}
-
-.main-container {
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
-  margin-top: 80px;
-  justify-content: flex-end;
-}
-
-.image-container img {
-  max-width: 400px;
-  margin-top: 180px;
-  height: auto;
-  border-radius: 15px;
-  margin-right: -130px;
-}
-
-
-.che {
+  align-items: center;
+  padding: 25px 15px;
+  border-radius: 16px;
+  font-weight: 700;
+  transition: all 0.3s ease;
   text-align: center;
-  font-size: 40px;
-  margin-top: 100px;
-  white-space: nowrap; /* Запрещает перенос строк */
-  font-family: 'YanoneKaffeesatz', sans-serif;
+  color: #222;
+  box-sizing: border-box;
 }
-.left-column,
-.right-column {
-  display: flex;
-  flex-direction: column;
-  gap: 10px; /* заменил отрицательный gap на положительный */
+
+.kids { background: #f3e4ff; border: 2px solid #d1b8ff; }
+.teens { background: #ffe589; border: 2px solid #ffc800; }
+.adults { background: #baf4f4; border: 2px solid #8fd3d6; }
+.seniors { background: #cde3c2; border: 2px solid #a6c79a; }
+
+.group-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
- body {
-    font-family: 'YanoneKaffeesatz', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    padding: 20px;
-}
-.cheza {
+
+/* === Подвал === */
+.site-footer {
+  background: #fff;
+  border-top: 1px solid #e0e0e0;
+  padding: 20px;
   text-align: center;
-  font-size: 40px;
-  margin-top: 150px;
-  white-space: nowrap; /* Запрещает перенос строк */
-  font-family: 'YanoneKaffeesatz', sans-serif;
-}
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 25px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top:50px;
+  font-size: 0.95rem;
+  color: #555;
+  margin-top: 40px;
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.question-answer {
-    margin-bottom: 10px;
-    position: relative;
-    
-}
-
-.question {
-    cursor: pointer;
-    padding: 15px;
-    background-color: #fff;
-    border-radius: 5px;
-    transition: all 0.3s ease-in-out;
-    position: relative;
-    font-size:20px;
-}
-
-.question::after {
-    content: "\25B6"; /* Стрелочка вправо */
-    display: inline-block;
-    transform: rotate(-90deg); /* По умолчанию повернута вверх */
-    transition: transform 0.3s ease-in-out;
-    float: right;
-    margin-left: 10px;
-}
-
-.question.active::after {
-    transform: rotate(0deg); /* Стрелочка смотрит вниз */
-}
-
-.answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-in-out;
-    padding: 0 15px;
-    line-height: 1.6;
-    opacity: 0;
-    visibility: hidden;
-    transition-delay: 0.1s;
-}
-
-.question.active + .answer {
-    max-height: 500px; /* Достаточно большой размер для любого ответа */
-    opacity: 1;
-    visibility: visible;
-}
+/* === Адаптив === */
 @media (max-width: 900px) {
-  .grid-two {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
-  .info-text {
-    max-width: 100%;
-    font-size: 20px;
-    text-align: center;
-    margin: 0 auto;
-  }
-  .info-image2 {
-    width: 100%;
-    margin: 0 auto;
-  }
-  .info-image2 img {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .info-text {
-    font-size: 16px;
-    padding: 0 15px;
-  }
-  .site-main {
-    padding: 30px 10px 40px;
-  }
-}
-@media (max-width: 900px) {
-  .main-container {
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-    gap: 20px;
-    justify-content: center;
-  }
-  .image-container img {
-    max-width: 90%;
-    margin-top: 0;
-    border-radius: 15px;
-  }
-  .blocks-wrapper {
-    flex-direction: column;
-    max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    gap: 20px;
-  }
-  .left-column,
-  .right-column {
-    gap: 20px;
-    align-items: center;
-  }
-  .white-turquoise-block,
-  .white-turquoise-block2 {
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto 30px auto;
-  }
-}
-
-@media (max-width: 480px) {
-  body {
-    font-size: 14px;
-  }
-  .site-header .wrap {
-    flex-direction: column;
-    padding: 20px 10px;
-  }
-  .main-nav {
-    gap: 15px;
-    margin-left: 0;
-    justify-content: center;
-  }
-  .main-nav a {
-    font-size: 16px;
-    padding: 8px 15px;
-  }
   .info-text {
     font-size: 18px;
-    max-width: 100%;
-  }
-  .image-container img {
-    max-width: 100%;
-    margin-top: 0;
-  }
-  .blocks-wrapper {
-    max-width: 100%;
-    gap: 15px;
-    margin-left: 0;
-    margin-right: 0;
-  }
-  .white-turquoise-block,
-  .white-turquoise-block2 {
-    width: 100%;
-    padding: 20px;
-    font-size: 1rem;
-    max-width: none;
-    margin: 0 auto 20px auto;
-  }
-}
-@media (max-width: 768px) {
-  .site-header .wrap {
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 10px;
-    gap: 15px;
-  }
-
-  .logo-row {
-    gap: 15px;
-    width: 100%;
-    justify-content: center;
-  }
-
-  .info-image img {
-    width: 80px;
-  }
-
-  .logo-text {
-    font-size: 16px;
     text-align: center;
   }
-
-  .main-nav {
-    gap: 20px;
-    margin-left: 0;
+  .groups {
+    grid-template-columns: 1fr 1fr;
     justify-content: center;
-    flex-wrap: wrap;
   }
-
-  .main-nav a {
+}
+@media (max-width: 480px) {
+  .info-text {
     font-size: 16px;
-    padding: 8px 15px;
+  }
+  .groups {
+    grid-template-columns: 1fr;
   }
 }

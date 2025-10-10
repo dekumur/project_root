@@ -163,7 +163,7 @@ body {
     <a href="education_adults.php" class="group-btn adults">
       Взрослые
     </a>
-    <a href="education_pensioners.php" class="group-btn pensioners">
+    <a href="education_seniors.php" class="group-btn pensioners">
       Пенсионеры
     </a>
   </div>

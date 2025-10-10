@@ -21,7 +21,7 @@ if (!defined('BASE_URL')) {
 <header class="site-header">
   <div class="wrap">
      <a href="<?= BASE_URL ?>/index.php">
-    <img src="../assets/img/G1.png" alt="Логотип Центра" class="brand-logo" />
+    <img src="<?= BASE_URL ?>../assets/img/G1.png" alt="Логотип Центра" class="brand-logo" />
 </a>
 
     <?php if (!empty($_SESSION['user_id'])): ?>

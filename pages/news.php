@@ -27,15 +27,15 @@ $news_result = mysqli_query($connect, $news_sql);
 
 <style>
 
-    @font-face {
-  font-family: 'Yo';
-  src: url('/fonts/') format('woff2');
+  @font-face {
+  font-family: "YanoneKaffeesatz";
+  src: url("../fonts/YanoneKaffeesatz.ttf") format("truetype");
   font-style: normal;
 }
 
 /* Общие стили */
 body {
-  font-family: Arial, sans-serif;
+  font-family: "YanoneKaffeesatz";
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
@@ -45,7 +45,6 @@ body {
 .wrap {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
 }
 
 
