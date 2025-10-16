@@ -3,7 +3,6 @@ session_start();
 require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/db_connect.php';
 
-// Проверка авторизации
 if (empty($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
     header('Location: ' . BASE_URL . '/pages/login.php');
     exit;
@@ -19,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $type = $_POST['type'] ?? '';
     $audience = $_POST['audience'] ?? '';
 
-    // Валидация полей
     if ($title === '') $errors[] = "Введите название материала.";
     if ($description === '') $errors[] = "Введите описание материала.";
     if (!in_array($type, ['article', 'video'])) $errors[] = "Выберите корректный тип материала.";
@@ -30,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($errors)) {
-        // Папка для загрузки
         $uploadDir = __DIR__ . '/../assets/files/';
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0755, true);
@@ -41,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $filename = time() . '_' . preg_replace("/[^a-zA-Z0-9_-]/", "_", pathinfo($originalName, PATHINFO_FILENAME)) . '.' . $ext;
         $targetPath = $uploadDir . $filename;
 
-        // Разрешённые MIME-типы
         $allowedTypes = [
             'application/pdf',
             'application/vnd.ms-powerpoint',
@@ -62,7 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $author_id = (int)$_SESSION['user_id'];
                 $created_at = date('Y-m-d H:i:s');
 
-                // Защита от SQL-инъекций
                 $title_safe = mysqli_real_escape_string($connect, $title);
                 $desc_safe = mysqli_real_escape_string($connect, $description);
                 $file_safe = mysqli_real_escape_string($connect, $filePathForDB);
@@ -76,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 if (mysqli_query($connect, $sql)) {
                     $success = "Материал успешно добавлен!";
-                    $_POST = []; // очистим форму
+                    $_POST = []; 
                 } else {
                     $errors[] = "Ошибка при добавлении в базу: " . mysqli_error($connect);
                 }

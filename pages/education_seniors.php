@@ -79,7 +79,6 @@ if (!$videos) die("Ошибка SQL (videos): " . mysqli_error($connect));
   text-decoration: underline;
 }
 
-/* Адаптив */
 @media (max-width: 900px) {
   .content-grid {
     grid-template-columns: 1fr;

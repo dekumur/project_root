@@ -1,5 +1,4 @@
 <?php
-// admin/index.php
 require_once __DIR__ . '/../includes/config.php';
 require_once BASE_PATH . '/includes/db_connect.php';
 require_once __DIR__ . '/admin_auth.php';
@@ -7,8 +6,6 @@ require_once __DIR__ . '/admin_auth.php';
 $page_title = 'Админ — Dashboard';
 require_once BASE_PATH . '/includes/admin_header.php';
 
-
-// Простая статистика
 $totalEvents = 0;
 $totalUsers = 0;
 

@@ -5,7 +5,6 @@ require_once BASE_PATH . '/includes/admin_header.php';
 
 $page_title = 'Пользователи';
 
-// Только для админа
 if ($_SESSION['user_email'] !== '1c_is_my_waify@gmail.com') {
     header('Location: ' . BASE_URL . '/index.php');
     exit;
@@ -13,11 +12,9 @@ if ($_SESSION['user_email'] !== '1c_is_my_waify@gmail.com') {
 
 function e($s) { return htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); }
 
-// Фильтры
 $search = trim($_GET['search'] ?? '');
 $role = trim($_GET['role'] ?? '');
 
-// Формируем SQL
 $sql = "SELECT id, name, email, role, created_at FROM users WHERE 1";
 
 if ($search) {
@@ -40,7 +37,6 @@ if (!$result) {
 <section class="admin-section">
   <h1>Пользователи</h1>
 
-  <!-- 🔍 Панель поиска и фильтрации -->
   <form method="get" class="filter-form">
     <input type="text" name="search" placeholder="Поиск по имени или email..." value="<?= e($search) ?>" class="filter-input">
 

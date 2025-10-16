@@ -4,7 +4,6 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 require_once __DIR__ . '/config.php';
 
-// Проверяем права (если забыли include admin_auth)
 if (empty($_SESSION['user_id'])) {
     header('Location: ' . BASE_URL . '/pages/login.php');
     exit;

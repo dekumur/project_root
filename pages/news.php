@@ -5,7 +5,6 @@ require_once BASE_PATH . '/includes/db_connect.php';
 $page_title = 'Новости';
 require_once BASE_PATH . '/includes/header.php';
 
-/* --- Безопасные функции --- */
 function e($s) {
     return htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
@@ -15,7 +14,6 @@ function excerpt($text, $len = 220) {
     return (mb_strlen($text) <= $len) ? $text : mb_substr($text, 0, $len) . '…';
 }
 
-/* --- Получаем опубликованные новости --- */
 $sql = "
     SELECT n.id, n.title, n.content, n.image, n.created_at, u.name AS author
     FROM news n
@@ -47,7 +45,6 @@ body {
     color: #222;
     max-width: 900px;
 }
-/* Карточки новостей */
 .cards {
     display: flex;
     flex-wrap: wrap;
@@ -102,7 +99,6 @@ body {
     color: #777;
     margin-top: 40px;
 }
-/* Адаптив */
 @media (max-width: 1000px) { .card { width: calc(50% - 20px); } }
 @media (max-width: 600px) { .card { width: 100%; } .card img { height: 180px; } }
 </style>
@@ -120,10 +116,9 @@ body {
         <div class="cards">
             <?php while ($n = mysqli_fetch_assoc($result)): ?>
                 <?php
-                // --- Определяем корректный путь к изображению ---
-                $imagePath = '/project_root/assets/img/no-image.jpg'; // заглушка
+                $imagePath = '/project_root/assets/img/no-image.jpg';
                 if (!empty($n['image'])) {
-                    $img = basename($n['image']); // берем только имя файла
+                    $img = basename($n['image']);
                     $imagePath = '/project_root/uploads/news/' . $img;
                 }
                 ?>

@@ -9,7 +9,6 @@ function e($s) {
     return htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); 
 }
 
-// Получаем данные из БД
 $sql = "SELECT id, title, description, event_date, event_time, location, organizer, link,
                municipality, format, audience, speaker_role, speaker_name, contact_person, reach, publication_link, comments
         FROM events

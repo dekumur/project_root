@@ -2,7 +2,6 @@
 session_start();
 require_once __DIR__ . '/../includes/config.php';
 
-// Проверка авторизации
 if (empty($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
     header('Location: ' . BASE_URL . '/pages/login.php');
     exit;
@@ -10,17 +9,15 @@ if (empty($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
 
 $page_title = "Список образовательных материалов";
 
-// Удаление материала
 if (isset($_GET['delete'])) {
     $id = (int)$_GET['delete'];
 
-    // Получаем путь к файлу
     $res = mysqli_query($conn, "SELECT file_path FROM materials WHERE id = $id");
     if ($res && mysqli_num_rows($res)) {
         $row = mysqli_fetch_assoc($res);
         $filePath = __DIR__ . '/../' . $row['file_path'];
         if (file_exists($filePath)) {
-            unlink($filePath); // удаляем файл
+            unlink($filePath); 
         }
         mysqli_query($conn, "DELETE FROM materials WHERE id = $id");
     }
@@ -29,7 +26,6 @@ if (isset($_GET['delete'])) {
     exit;
 }
 
-// Получаем все материалы
 $result = mysqli_query($conn, "SELECT m.*, u.user_name FROM materials m LEFT JOIN users u ON m.author_id = u.id ORDER BY m.created_at DESC");
 ?>
 

@@ -1,9 +1,8 @@
 <?php
 session_start();
 require_once __DIR__ . '/../includes/config.php';
-require_once __DIR__ . '/../includes/db_connect.php'; // здесь создается $connect
+require_once __DIR__ . '/../includes/db_connect.php';
 
-// Проверка авторизации
 if (empty($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
     header('Location: ' . BASE_URL . '/pages/login.php');
     exit;
@@ -11,7 +10,6 @@ if (empty($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
 
 $page_title = "Заявки от кураторов";
 
-// Получаем все заявки
 $sql = "SELECT er.id, er.title, er.description, er.created_at, u.name AS curator_name
         FROM event_request er
         JOIN users u ON er.user_id = u.id

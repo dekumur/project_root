@@ -13,7 +13,6 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL) || $password === '') {
     exit;
 }
 
-// Получаем пользователя по email
 $sql = "SELECT id, password, name FROM users WHERE email = ? LIMIT 1";
 $stmt = mysqli_prepare($connect, $sql);
 mysqli_stmt_bind_param($stmt, 's', $email);
@@ -29,7 +28,6 @@ if (mysqli_stmt_fetch($stmt)) {
         $_SESSION['user_email'] = $email;
         $_SESSION['user_name'] = $name;
 
-        // Редирект для конкретного admin email
         $redirect = ($email === '1c_is_my_waify@gmail.com') ? BASE_URL . '/admin/index.php' : BASE_URL . '/index.php';
 
         echo json_encode(['success' => true, 'message' => 'Вход выполнен успешно!', 'redirect_url' => $redirect]);

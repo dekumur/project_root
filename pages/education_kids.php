@@ -3,11 +3,9 @@ include __DIR__ . '/../includes/db_connect.php';
 $page_title = 'Для детей';
 include __DIR__ . '/../includes/header.php';
 
-// SQL-запросы к таблице materials с учетом поля audience
 $articles_sql = "SELECT * FROM materials WHERE audience='kids' AND type='article' ORDER BY created_at DESC LIMIT 5";
 $videos_sql   = "SELECT * FROM materials WHERE audience='kids' AND type='video' ORDER BY created_at DESC LIMIT 5";
 
-// Выполнение запросов с проверкой
 $articles = mysqli_query($connect, $articles_sql);
 if (!$articles) {
     die("Ошибка SQL (articles): " . mysqli_error($connect));
@@ -85,7 +83,6 @@ if (!$videos) {
   text-decoration: underline;
 }
 
-/* Адаптив */
 @media (max-width: 900px) {
   .content-grid {
     grid-template-columns: 1fr;
@@ -98,7 +95,6 @@ if (!$videos) {
   <p style="text-align:center;">Обучающие материалы: статьи и видео по финансовой грамотности для детей.</p>
 
   <div class="content-grid">
-    <!-- Слева — Статьи -->
     <div class="block">
       <h2>Статьи</h2>
       <?php if (mysqli_num_rows($articles) > 0): ?>
@@ -117,7 +113,6 @@ if (!$videos) {
       <?php endif; ?>
     </div>
 
-    <!-- Справа — Видео -->
     <div class="block">
       <h2>Видео</h2>
       <?php if (mysqli_num_rows($videos) > 0): ?>

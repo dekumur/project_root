@@ -57,7 +57,6 @@
   font-size: 0.85rem;
 }
 
-/* ====== Фильтры ====== */
 .filter-form {
   display: flex;
   flex-wrap: wrap;
@@ -105,7 +104,6 @@
   background: #e5e7eb;
 }
 
-/* ====== Таблица ====== */
 .admin-table {
   width: 100%;
   border-collapse: collapse;
@@ -143,7 +141,6 @@
   color: #065f46;
 }
 
-/* ====== Кнопки ====== */
 .btn-delete {
   background: #ef4444;
   color: #fff;
@@ -162,7 +159,6 @@
   color: #555;
 }
 
-/* ====== Форма добавления ====== */
 .admin-form {
   max-width: 700px;
   background: #fff;
@@ -208,7 +204,6 @@
   background: #1e40af;
 }
 
-/* Сообщения */
 .success {
   color: #16a34a;
   font-weight: 600;
@@ -219,7 +214,6 @@
   font-weight: 600;
 }
 
-/* === Админская шапка === */
 .admin-header {
     background: linear-gradient(90deg, #1e2a38, #1b3a5a);
     color: #fff;
@@ -241,7 +235,6 @@
     flex-wrap: wrap;
 }
 
-/* === Логотип и бренд === */
 .admin-brand {
     display: flex;
     align-items: center;
@@ -264,7 +257,6 @@
     color: #a0c4ff;
 }
 
-/* === Навигация === */
 .admin-nav {
     display: flex;
     gap: 20px;
@@ -284,7 +276,6 @@
     color: #00d4ff;
 }
 
-/* === Блок пользователя === */
 .admin-user {
     display: flex;
     align-items: center;

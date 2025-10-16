@@ -3,7 +3,6 @@ session_start();
 require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/db_connect.php';
 
-// Проверка авторизации куратора
 if (empty($_SESSION['user_id']) || $_SESSION['user_role'] !== 'curator') {
     header('Location: ' . BASE_URL . '/pages/login.php');
     exit;
@@ -19,7 +18,6 @@ if ($request_id <= 0) {
     die("Некорректный ID заявки.");
 }
 
-// Проверяем, что заявка принадлежит текущему куратору
 $user_id = (int)$_SESSION['user_id'];
 $sql = "SELECT * FROM event_request WHERE id = $request_id AND user_id = $user_id";
 $result = mysqli_query($connect, $sql);
@@ -29,7 +27,6 @@ if (!$request) {
     die("Заявка не найдена.");
 }
 
-// Обработка сохранения изменений
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = trim($_POST['title'] ?? '');
     $description = trim($_POST['description'] ?? '');

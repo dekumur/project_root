@@ -25,7 +25,6 @@ if (!defined('BASE_URL')) {
 </a>
 
     <?php if (!empty($_SESSION['user_id'])): ?>
-        <!-- Навигация для авторизованных пользователей -->
         <nav class="main-nav">
             
             <a href="<?= BASE_URL ?>/pages/calendar.php">Календарь</a>
@@ -37,7 +36,6 @@ if (!defined('BASE_URL')) {
         </div>
 
     <?php else: ?>
-        <!-- Навигация для гостей -->
         <nav class="main-nav">
             <a href="<?= BASE_URL ?>/pages/calendar.php">Календарь</a>
             <a href="<?= BASE_URL ?>/pages/news.php">Новости</a>

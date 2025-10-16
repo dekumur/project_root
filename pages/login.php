@@ -8,7 +8,6 @@ require_once BASE_PATH . '/includes/header.php';
 
 function e($s){ return htmlspecialchars($s, ENT_QUOTES|ENT_SUBSTITUTE, 'UTF-8'); }
 
-// Генерация CSRF-токена
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
@@ -17,7 +16,6 @@ $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // Проверка CSRF
     if (empty($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
         $errors[] = 'Ошибка безопасности. Попробуйте ещё раз.';
     } else {
@@ -27,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL) || $password === '') {
             $errors[] = 'Введите корректный email и пароль.';
         } else {
-            // Получаем id, пароль, имя и роль (пароль в открытом виде)
             $sql = "SELECT id, password, name, role FROM users WHERE email = ? LIMIT 1";
             $stmt = mysqli_prepare($connect, $sql);
             mysqli_stmt_bind_param($stmt, 's', $email);
@@ -39,17 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 mysqli_stmt_fetch($stmt);
                 mysqli_stmt_close($stmt);
 
-                // Проверяем пароль (простое сравнение)
                 if ($password === $db_password) {
-                    // Авторизация успешна
                     session_regenerate_id(true);
                     $_SESSION['user_id'] = $id;
                     $_SESSION['user_email'] = $email;
                     $_SESSION['user_name'] = $name;
-                    $_SESSION['user_role'] = $role; // Сохраняем роль в сессии
+                    $_SESSION['user_role'] = $role; 
                     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 
-                    // Редирект в зависимости от роли
                     switch ($role) {
                         case 'admin':
                             header('Location: ' . BASE_URL . '/admin/index.php');

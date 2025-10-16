@@ -3,7 +3,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Если BASE_URL не задан (например, при прямом обращении)
 if (!defined('BASE_URL')) {
     define('BASE_URL', '');
 }
@@ -24,7 +23,6 @@ if (!defined('BASE_URL')) {
     <a class="brand" href="<?= BASE_URL ?>/index.php">Центр финансового просвещения УР</a>
 
     <?php if (!empty($_SESSION['user_id'])): ?>
-        <!-- Навигация для авторизованных пользователей -->
         <nav class="main-nav">
             <a href="<?= BASE_URL ?>/pages/calendar.php">Календарь</a>
             <a href="<?= BASE_URL ?>/pages/news.php">Новости</a>
@@ -36,7 +34,6 @@ if (!defined('BASE_URL')) {
         </div>
 
     <?php else: ?>
-        <!-- Навигация для гостей -->
         <nav class="main-nav">
             <a href="<?= BASE_URL ?>/pages/calendar.php">Календарь</a>
             <a href="<?= BASE_URL ?>/pages/news.php">Новости</a>

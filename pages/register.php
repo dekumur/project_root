@@ -1,5 +1,4 @@
 <?php
-// Подключаем конфиг и DB
 require_once __DIR__ . '/../includes/config.php';
 require_once BASE_PATH . '/includes/db_connect.php';
 
@@ -11,7 +10,6 @@ function e($s){
     return htmlspecialchars($s, ENT_QUOTES|ENT_SUBSTITUTE, 'UTF-8'); 
 }
 
-// CSRF токен
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
@@ -21,7 +19,6 @@ $success = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // Проверка CSRF
     if (empty($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
         $errors[] = 'Ошибка безопасности. Попробуйте ещё раз.';
     } else {
@@ -30,7 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $password = $_POST['password'] ?? '';
         $password2 = $_POST['password2'] ?? '';
 
-        // Валидация
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $errors[] = 'Введите корректный email.';
         }
@@ -42,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if (empty($errors)) {
-            // Проверяем существование пользователя
             $sql = "SELECT id FROM users WHERE email = ? LIMIT 1";
             $stmt = mysqli_prepare($connect, $sql);
             mysqli_stmt_bind_param($stmt, 's', $email);
@@ -54,14 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 mysqli_stmt_close($stmt);
             } else {
                 mysqli_stmt_close($stmt);
-                // Создаем пользователя без хеширования пароля
                 $insert = "INSERT INTO users (email, password, name) VALUES (?, ?, ?)";
                 $stmt2 = mysqli_prepare($connect, $insert);
                 mysqli_stmt_bind_param($stmt2, 'sss', $email, $password, $name);
 
                 if (mysqli_stmt_execute($stmt2)) {
                     $success = true;
-                    // Автоматический логин
                     $_SESSION['user_id'] = mysqli_insert_id($connect);
                     $_SESSION['user_email'] = $email;
                     $_SESSION['user_name'] = $name;
@@ -69,7 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     mysqli_stmt_close($stmt2);
 
-                    // Редирект на профиль
                     header('Location: ' . BASE_URL . '/index.php');
                     exit;
                 } else {

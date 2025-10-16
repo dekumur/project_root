@@ -5,7 +5,6 @@ require_once BASE_PATH . '/includes/admin_header.php';
 
 $page_title = 'Добавить новость';
 
-// Проверка прав (только администраторы)
 if ($_SESSION['user_role'] !== 'admin') {
     header('Location: ' . BASE_URL . '/index.php');
     exit;
@@ -20,11 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $author_id = $_SESSION['user_id'] ?? null;
     $imagePath = null;
 
-    // Проверка заполнения
     if ($title === '' || $content === '') {
         $message = '<p class="error">Заполните все обязательные поля.</p>';
     } else {
-        // Проверка и загрузка изображения
         if (!empty($_FILES['image']['name'])) {
             $uploadDir = BASE_PATH . '/uploads/news/';
             if (!file_exists($uploadDir)) {
@@ -46,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        // Если ошибок нет — вставляем запись
         if ($message === '') {
             $stmt = mysqli_prepare($connect, "
                 INSERT INTO news (title, content, image, author_id, created_at, is_published)

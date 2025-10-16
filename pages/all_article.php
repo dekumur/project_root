@@ -3,7 +3,6 @@ include __DIR__ . '/../includes/db_connect.php';
 $page_title = 'Статьи для детей';
 include __DIR__ . '/../includes/header.php';
 
-// Получаем все статьи для детей
 $audience = 'kids';
 $sql_articles = "SELECT * FROM materials WHERE audience='$audience' AND type='article' ORDER BY created_at DESC";
 $articles = mysqli_query($connect, $sql_articles);

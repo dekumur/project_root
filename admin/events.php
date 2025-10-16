@@ -1,5 +1,4 @@
 <?php
-// admin/events.php
 require_once __DIR__ . '/../includes/config.php';
 require_once BASE_PATH . '/includes/db_connect.php';
 require_once __DIR__ . '/admin_auth.php';
@@ -13,7 +12,6 @@ $action = $_GET['action'] ?? '';
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 $errors = [];
 
-// Handle POST actions: add / edit / delete
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $act = $_POST['act'] ?? '';
     if ($act === 'delete' && !empty($_POST['id'])) {
@@ -27,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($act === 'save') {
-        // собираем поля
         $id = !empty($_POST['id']) ? (int)$_POST['id'] : 0;
         $title = trim($_POST['title'] ?? '');
         $description = trim($_POST['description'] ?? '');
@@ -54,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (empty($errors)) {
             if ($id > 0) {
-                // update
                 $sql = "UPDATE events SET title=?, description=?, event_date=?, event_time=?, location=?, municipality=?, format=?, audience=?, speaker_role=?, speaker_name=?, contact_person=?, reach=?, link=?, publication_link=?, comments=? WHERE id=?";
                 $stmt = mysqli_prepare($connect, $sql);
                 mysqli_stmt_bind_param($stmt, 'sssssssssssssssi',
@@ -64,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header('Location: ' . BASE_URL . '/admin/events.php');
                 exit;
             } else {
-                // insert
                 $sql = "INSERT INTO events (title, description, event_date, event_time, location, municipality, format, audience, speaker_role, speaker_name, contact_person, reach, link, publication_link, comments, created_at)
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
                 $stmt = mysqli_prepare($connect, $sql);
@@ -78,7 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Если action = edit или add, подгрузим запись (для edit)
 $event = null;
 if ($action === 'edit' && $id > 0) {
     $stmt = mysqli_prepare($connect, "SELECT * FROM events WHERE id = ? LIMIT 1");
@@ -89,7 +83,6 @@ if ($action === 'edit' && $id > 0) {
     mysqli_stmt_close($stmt);
 }
 
-// Получаем список событий
 $events = [];
 $res = mysqli_query($connect, "SELECT id, title, event_date, event_time, municipality FROM events ORDER BY event_date DESC");
 if ($res) {
@@ -116,7 +109,6 @@ if ($res) {
     <?php if ($action === 'add' || $action === 'edit'): ?>
         <?php
             $v = $event ?? [];
-            // helper
             $get = function($k, $default='') use ($v){ return isset($v[$k]) ? e($v[$k]) : $default; };
         ?>
         <form method="post" action="<?= BASE_URL ?>/admin/events.php">

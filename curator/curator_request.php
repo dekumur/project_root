@@ -3,7 +3,6 @@ session_start();
 require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/db_connect.php';
 
-// Проверка авторизации куратора
 if (empty($_SESSION['user_id']) || $_SESSION['user_role'] !== 'curator') {
     header('Location: ' . BASE_URL . '/pages/login.php');
     exit;
@@ -13,7 +12,6 @@ $page_title = "Мои заявки на мероприятия";
 $errors = [];
 $success = '';
 
-// Обработка отправки новой заявки
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = trim($_POST['title'] ?? '');
     $description = trim($_POST['description'] ?? '');
@@ -42,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Получаем все заявки текущего куратора
 $user_id = (int)$_SESSION['user_id'];
 $sql = "SELECT * FROM event_request WHERE user_id = $user_id ORDER BY created_at DESC";
 $result = mysqli_query($connect, $sql);
@@ -76,7 +73,6 @@ if ($result) {
         <div class="success"><?= htmlspecialchars($success) ?></div>
     <?php endif; ?>
         <link rel="stylesheet" href="../assets/css/curator.css">
-    <!-- Форма отправки новой заявки -->
     <form action="" method="post" class="admin-form">
         <div class="form-group">
             <label for="title">Название мероприятия</label>
@@ -91,7 +87,6 @@ if ($result) {
         <button type="submit" class="btn-primary">Отправить заявку</button>
     </form>
 
-    <!-- Таблица с ранее отправленными заявками -->
     <h2 style="margin-top:30px;">Ранее отправленные заявки</h2>
     <div class="admin-table-wrapper">
         <table class="admin-table">

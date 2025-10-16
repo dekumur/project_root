@@ -76,7 +76,6 @@ body {
   border-color: #009688;
 }
 
-/* Основной блок */
 .hero {
   text-align: left;
   margin: 50px auto;
@@ -89,9 +88,9 @@ body {
 
 .groups {
   display: grid;
-  grid-template-columns: repeat(2, 220px); /* две колонки фиксированной ширины */
-  gap: 20px 30px; /* вертикальные и горизонтальные отступы */
-  justify-content: start; /* выравнивание по левому краю */
+  grid-template-columns: repeat(2, 220px);
+  gap: 20px 30px; 
+  justify-content: start;
   margin-top: 40px;
 }
 
@@ -112,7 +111,6 @@ body {
   box-sizing: border-box;
 }
 
-/* Цвета кнопок */
 .kids { background: #f3e4ff; border: 2px solid #d1b8ff; }
 .teens { background: #ffe589; border: 2px solid #ffc800; }
 .adults { background: #baf4f4; border: 2px solid #8fd3d6; }
@@ -123,8 +121,6 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-
-/* Иллюстрация */
 .illustration {
   margin-top: -250px;
   text-align: right;
@@ -135,7 +131,6 @@ body {
   height: auto;
 }
 
-/* Адаптив */
 @media (max-width: 768px) {
   .illustration {
     text-align: center;
